@@ -55,7 +55,7 @@ public class SendFakeMessage {
         for (String group : groups) {
             for (int i = 1; i <= messageParts; i++) {
                 logger.info("adding message " + i + " of group " + group);
-                hashSet.add(new FakeMessage("msg " + i + ", gr " + group, group, i));
+                hashSet.add(new FakeMessage(group + ", msg " + i, group, i));
 
                 // send messages sequentially, in order of creation
                 /*createAndSendFakeMessage("message " + i + ", of group " + group, group, i);*/
