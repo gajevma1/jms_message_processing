@@ -1,6 +1,5 @@
 package com.example.jms_message_processing.services;
 
-import com.example.jms_message_processing.errorHandling.MessageGroupProcessingException;
 import com.example.jms_message_processing.model.MessageGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,6 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
 import javax.jms.*;
-import java.util.HashMap;
 
 
 @Service
@@ -19,7 +17,7 @@ public class ReceiveFakeMessages {
     @Value("${ibm.mq.queueName}")
     private String queueName;
 
-    private MessageGroup messageGroup = new MessageGroup();
+    private final MessageGroup messageGroup = new MessageGroup();
 
     @JmsListener(destination = "${ibm.mq.queueName}", selector = "JMSXGroupSeq = 1")
     public void receiveFirstMessageOfGroup(Message message, Session session) throws Exception {
@@ -55,7 +53,7 @@ public class ReceiveFakeMessages {
     public void receiveSecondToLastMessageOfGroup(String groupId, Session session) throws JMSException {
 
         Destination destination = session.createQueue("queue:///" + queueName);
-        try (MessageConsumer consumer = session.createConsumer(destination, "JMSXGroupID = '" + groupId + "'");) {
+        try (MessageConsumer consumer = session.createConsumer(destination, "JMSXGroupID = '" + groupId + "'")) {
             Message lastMessage = null;
 
             while (true) {
@@ -68,7 +66,7 @@ public class ReceiveFakeMessages {
                     lastMessage = message;
                 } else {
                     // let's crash things while processing some_fake_group_2
-                    if (lastMessage.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
+                    if (lastMessage != null && lastMessage.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
                         messageGroup.setFailed(true);
                         throw new Exception("some fake error occurred :)");
                     }
