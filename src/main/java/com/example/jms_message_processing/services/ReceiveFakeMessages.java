@@ -50,7 +50,7 @@ public class ReceiveFakeMessages {
 
     }
 
-    public void receiveSecondToLastMessageOfGroup(String groupId, Session session) throws JMSException {
+    private void receiveSecondToLastMessageOfGroup(String groupId, Session session) throws JMSException {
 
         Destination destination = session.createQueue("queue:///" + queueName);
         try (MessageConsumer consumer = session.createConsumer(destination, "JMSXGroupID = '" + groupId + "'")) {
@@ -67,13 +67,13 @@ public class ReceiveFakeMessages {
                 } else {
                     // let's crash things while processing some_fake_group_2
                     if (lastMessage != null && lastMessage.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
-                        messageGroup.setFailed(true);
                         throw new Exception("some fake error occurred :)");
                     }
                     break;
                 }
             }
         } catch (Exception exception) {
+            messageGroup.setFailed(true);
             exception.printStackTrace();
         }
     }
