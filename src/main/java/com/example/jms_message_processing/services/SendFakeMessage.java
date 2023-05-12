@@ -54,7 +54,7 @@ public class SendFakeMessage {
         List<String> groups = createFakeGroups(messageGroups);
         for (String group : groups) {
             for (int i = 1; i <= messageParts; i++) {
-                logger.info("adding message " + i + " of group " + group);
+//                logger.info("adding message " + i + " of group " + group);
                 hashSet.add(new FakeMessage(group + ", msg " + i, group, i));
 
                 // send messages sequentially, in order of creation
@@ -64,7 +64,7 @@ public class SendFakeMessage {
 
         // send messages in random order
         for (FakeMessage fakeMessage : hashSet) {
-            logger.info("sending message {} of group {}", fakeMessage.getGroupSeq(), fakeMessage.getGroupId());
+//            logger.info("sending message {} of group {}", fakeMessage.getGroupSeq(), fakeMessage.getGroupId());
             createAndSendFakeMessage(fakeMessage.getMessage(), fakeMessage.getGroupId(), fakeMessage.getGroupSeq());
         }
     }

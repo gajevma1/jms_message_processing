@@ -1,6 +1,7 @@
 package com.example.jms_message_processing.services;
 
 import com.example.jms_message_processing.errorHandling.MessageGroupProcessingException;
+import com.example.jms_message_processing.model.MessageGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,26 +19,28 @@ public class ReceiveFakeMessages {
     @Value("${ibm.mq.queueName}")
     private String queueName;
 
-    private final HashMap<Integer, Object> messageGroup = new HashMap<>();
+    private MessageGroup messageGroup = new MessageGroup();
 
     @JmsListener(destination = "${ibm.mq.queueName}", selector = "JMSXGroupSeq = 1")
     public void receiveFirstMessageOfGroup(Message message, Session session) throws Exception {
         logger.info("FIRST MESSAGE RECEIVED");
 //        logger.info("msg: {}", message.getBody(String.class));
         logger.info("msg: {}", message);
-        messageGroup.put(message.getIntProperty("JMSXGroupSeq"), message.getBody(String.class));
+        messageGroup.getMessageGroup().put(message.getIntProperty("JMSXGroupSeq"), message.getBody(String.class));
         try {
-            if (receiveSecondToLastMessageOfGroup(message.getStringProperty("JMSXGroupID"), session)) {
+            receiveSecondToLastMessageOfGroup(message.getStringProperty("JMSXGroupID"), session);
+            if (!messageGroup.isFailed()) {
                 session.commit();
-                logger.info("==================================== message for group: {} {", message.getStringProperty("JMSXGroupID"));
-                messageGroup.forEach((key, value) -> logger.info("key: {}, value: {}", key, value));
-                logger.info("} ====================================\n");
-                messageGroup.clear();
+                logger.info("===================================================================");
+                logger.info("message for group: {} {", message.getStringProperty("JMSXGroupID"));
+                messageGroup.getMessageGroup().forEach((key, value) -> logger.info("key: {}, value: {}", key, value));
+                logger.info("}");
+                logger.info("===================================================================");
             } else {
                 logger.warn("rolling back the session!");
                 session.rollback();
-                throw new MessageGroupProcessingException(" --- well, shit!");
             }
+            messageGroup.resetMessageGroup();
         } catch (Exception e) {
             logger.error("something went wrong! \uD83D\uDE42");
             e.printStackTrace();
@@ -49,12 +52,13 @@ public class ReceiveFakeMessages {
 
     }
 
-    public boolean receiveSecondToLastMessageOfGroup(String groupId, Session session) {
+    public void receiveSecondToLastMessageOfGroup(String groupId, Session session) {
 
         MessageConsumer consumer = null;
         try {
             Destination destination = session.createQueue("queue:///" + queueName);
             consumer = session.createConsumer(destination, "JMSXGroupID = '" + groupId + "'");
+            Message lastMessage = null;
 
             while (true) {
                 Message message = consumer.receive(1000);
@@ -62,19 +66,19 @@ public class ReceiveFakeMessages {
                     // process the message
                     logger.info("SUB MESSAGE RECEIVED");
                     logger.info("subMsg: {}", message.getBody(String.class));
-                    messageGroup.put(message.getIntProperty("JMSXGroupSeq"), message.getBody(String.class));
-
-                    // let's crash things while processing some_fake_group_2
-                    if (message.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
-                            throw new Exception("some fake error occurred :)");
-                    }
+                    messageGroup.getMessageGroup().put(message.getIntProperty("JMSXGroupSeq"), message.getBody(String.class));
+                    lastMessage = message;
                 } else {
+                    // let's crash things while processing some_fake_group_2
+                    if (lastMessage.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
+                        messageGroup.setFailed(true);
+                        throw new Exception("some fake error occurred :)");
+                    }
                     break;
                 }
             }
         } catch (Exception exception) {
             exception.printStackTrace();
-            return false;
         } finally {
             if (consumer != null) {
                 try {
@@ -86,6 +90,5 @@ public class ReceiveFakeMessages {
                 }
             }
         }
-        return true;
     }
 }

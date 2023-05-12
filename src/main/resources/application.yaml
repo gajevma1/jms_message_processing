@@ -1,9 +1,11 @@
 ibm:
   mq:
     queueManager: QM1
-    channel: DEV.APP.SVRCONN
+    channel: DEV.ADMIN.SVRCONN
     host: localhost
     port: 1414
-    user: app
+    user: admin
     password: passw0rd
     queueName: DEV.QUEUE.1
+#    backout-threshold: 1
+#    backout-requeue-queue: MY.DEAD.LETTER.QUEUE
