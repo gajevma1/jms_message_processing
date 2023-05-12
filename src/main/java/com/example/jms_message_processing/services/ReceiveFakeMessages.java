@@ -52,12 +52,10 @@ public class ReceiveFakeMessages {
 
     }
 
-    public void receiveSecondToLastMessageOfGroup(String groupId, Session session) {
+    public void receiveSecondToLastMessageOfGroup(String groupId, Session session) throws JMSException {
 
-        MessageConsumer consumer = null;
-        try {
-            Destination destination = session.createQueue("queue:///" + queueName);
-            consumer = session.createConsumer(destination, "JMSXGroupID = '" + groupId + "'");
+        Destination destination = session.createQueue("queue:///" + queueName);
+        try (MessageConsumer consumer = session.createConsumer(destination, "JMSXGroupID = '" + groupId + "'");) {
             Message lastMessage = null;
 
             while (true) {
@@ -79,16 +77,6 @@ public class ReceiveFakeMessages {
             }
         } catch (Exception exception) {
             exception.printStackTrace();
-        } finally {
-            if (consumer != null) {
-                try {
-                    logger.info("... closing the consumer for sub-messages ... ...");
-                    consumer.close();
-                } catch (JMSException jmsException) {
-                    // Log exception
-                    jmsException.printStackTrace();
-                }
-            }
         }
     }
 }
