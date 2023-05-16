@@ -66,11 +66,11 @@ public class ReceiveFakeMessages {
                     lastMessage = message;
                 } else {
                     // let's crash things while processing some_fake_group_2
-                    if (lastMessage != null && lastMessage.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
-                        throw new Exception("some fake error occurred :)");
-                    }
                     break;
                 }
+            }
+            if (lastMessage != null && lastMessage.getStringProperty("JMSXGroupID").equals("some_fake_group_2")) {
+                throw new Exception("some fake error occurred :)");
             }
         } catch (Exception exception) {
             messageGroup.setFailed(true);
