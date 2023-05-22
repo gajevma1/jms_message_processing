@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StandardBusinessDocument xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader">
+    <StandardBusinessDocumentHeader>
+        <HeaderVersion>1.0</HeaderVersion>
+        <Sender>
+            <Identifier Authority="iso6523-actorid-upis">0192:983445349</Identifier>
+        </Sender>
+        <Receiver>
+            <Identifier Authority="iso6523-actorid-upis">0192:916298420</Identifier>
+        </Receiver>
+        <DocumentIdentification>
+            <Standard>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</Standard>
+            <TypeVersion>2.1</TypeVersion>
+            <InstanceIdentifier>BEL725AE7F6D38211EDB8A45F7EB99A4109-7301392195</InstanceIdentifier>
+            <Type>Invoice</Type>
+            <CreationDateAndTime>2023-04-18T13:55:30+03:00</CreationDateAndTime>
+        </DocumentIdentification>
+        <BusinessScope>
+            <Scope>
+                <Type>DOCUMENTID</Type>
+                <InstanceIdentifier>
+                    urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1
+                </InstanceIdentifier>
+                <Identifier>busdox-docid-qns</Identifier>
+            </Scope>
+            <Scope>
+                <Type>PROCESSID</Type>
+                <InstanceIdentifier>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</InstanceIdentifier>
+                <Identifier>cenbii-procid-ubl</Identifier>
+            </Scope>
+        </BusinessScope>
+    </StandardBusinessDocumentHeader>
+    <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+             xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+             xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+             xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+             xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2"
+             xmlns:udt="urn:un:unece:uncefact:data:draft:UnqualifiedDataTypes:2"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2 UBL-Invoice-2.1.xsd ">
+        <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0
+        </cbc:CustomizationID>
+        <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
+        <cbc:ID>91635349</cbc:ID>
+        <cbc:IssueDate>2023-01-09</cbc:IssueDate>
+        <cbc:DueDate>2023-01-23</cbc:DueDate>
+        <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+        <cbc:Note>Kontaktpersom: Karl Ove Grønli 90826144.|Tilgang faller ut sporadisk på flere lesere. Mulig feil på
+            node.||Arbeid utført 02.01.2023:|Sjekk av logg på kortleser pc, viser nett spennings feil/ spenning|tilbake.
+            Sjekk av strømforsyning i u.etg, lav batteri spenning,|batterier defekte. Hentet nye batterier fra lager,
+            idriftsatt,|fortsatt lav spenning. Feilsøker på Elreg batteri lader. Viser kun|24v, skal være ca 27v, defekt
+            lader. Tatt ut ny Strømforsyning/batteri|lader fra Stanley lager. Koblet i fra gammel og montert og koblet
+            til|ny. Lader batteri på ca 27v, ok. Kobler tilbake de batterier som var.|Sjekker lade spenning, 27.4 v,
+            ok.|MERK. Flere noder (sentral kort) er gamle, bør snart byttes mot nye.
+        </cbc:Note>
+        <cbc:DocumentCurrencyCode>NOK</cbc:DocumentCurrencyCode>
+        <cbc:BuyerReference>2810/2831/Johma</cbc:BuyerReference>
+        <cac:OrderReference>
+            <cbc:ID>9000943183</cbc:ID>
+        </cac:OrderReference>
+        <cac:AdditionalDocumentReference>
+        <cbc:ID>91635349.pdf</cbc:ID>
+        <cbc:DocumentDescription>
+            <cac:Party>
+                <cbc:EndpointID schemeID="0192">983445349</cbc:EndpointID>
+                <cac:PartyIdentification>
+                    <cbc:ID schemeID="0192">983445349</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                    <cbc:Name>Stanley Security AS</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                    <cbc:StreetName>Nydalsveien 28</cbc:StreetName>
+                    <cbc:CityName>Oslo</cbc:CityName>
+                    <cbc:PostalZone>0484</cbc:PostalZone>
+                    <cac:Country>
+                        <cbc:IdentificationCode>NO</cbc:IdentificationCode>
+                    </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyTaxScheme>
+                    <cbc:CompanyID>NO983445349MVA</cbc:CompanyID>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:PartyTaxScheme>
+                <cac:PartyTaxScheme>
+                    <cbc:CompanyID>Foretaksregisteret</cbc:CompanyID>
+                    <cac:TaxScheme>
+                        <cbc:ID>TAX</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:PartyTaxScheme>
+                <cac:PartyLegalEntity>
+                    <cbc:RegistrationName>Stanley Security AS</cbc:RegistrationName>
+                    <cbc:CompanyID>983445349</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                    <cbc:Name>Stanley Business Support</cbc:Name>
+                    <cbc:Telephone>05010</cbc:Telephone>
+                    <cbc:ElectronicMail>faktura@sbdinc.com</cbc:ElectronicMail>
+                </cac:Contact>
+            </cac:Party>
+        </cac:AccountingSupplierParty>
+        <cac:AccountingCustomerParty>
+            <cac:Party>
+                <cbc:EndpointID schemeID="0192">916298420</cbc:EndpointID>
+                <cac:PartyIdentification>
+                    <cbc:ID>6048777</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                    <cbc:Name>OBOS FELLESKOST AS Avd 2831</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                    <cbc:StreetName>HAMMERSBORG TORG 1</cbc:StreetName>
+                    <cbc:CityName>OSLO</cbc:CityName>
+                    <cbc:PostalZone>0179</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>St Olavs plass</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode>NO</cbc:IdentificationCode>
+                    </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyTaxScheme>
+                    <cbc:CompanyID>NO916298420MVA</cbc:CompanyID>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:PartyTaxScheme>
+                <cac:PartyLegalEntity>
+                    <cbc:RegistrationName>OBOS FELLESKOST AS Avd 2831</cbc:RegistrationName>
+                    <cbc:CompanyID>916298420</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                    <cbc:Name>0070881351</cbc:Name>
+                </cac:Contact>
+            </cac:Party>
+        </cac:AccountingCustomerParty>
+        <cac:Delivery>
+            <cbc:ActualDeliveryDate>2023-01-09</cbc:ActualDeliveryDate>
+            <cac:DeliveryLocation>
+                <cac:Address>
+                    <cbc:StreetName>Møllergata 39</cbc:StreetName>
+                    <cbc:CityName>Oslo</cbc:CityName>
+                    <cbc:PostalZone>0179</cbc:PostalZone>
+                    <cac:Country>
+                        <cbc:IdentificationCode>NO</cbc:IdentificationCode>
+                    </cac:Country>
+                </cac:Address>
+            </cac:DeliveryLocation>
+            <cac:DeliveryParty>
+                <cac:PartyName>
+                    <cbc:Name>OBOS FELLESKOST AS Avd 2831 Obos Felleskostnad AS avd. 2831</cbc:Name>
+                </cac:PartyName>
+            </cac:DeliveryParty>
+        </cac:Delivery>
+        <cac:PaymentMeans>
+            <cbc:PaymentMeansCode name="Credit transfer">30</cbc:PaymentMeansCode>
+            <cbc:PaymentID>916353499</cbc:PaymentID>
+            <cac:PayeeFinancialAccount>
+                <cbc:ID>97500645931</cbc:ID>
+                <cbc:Name>SKANDINAVISKA ENSKILDA BANKEN</cbc:Name>
+                <cac:FinancialInstitutionBranch>
+                    <cbc:ID>ESSENOKXXXX</cbc:ID>
+                </cac:FinancialInstitutionBranch>
+            </cac:PayeeFinancialAccount>
+        </cac:PaymentMeans>
+        <cac:PaymentMeans>
+            <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
+            <cbc:PaymentID>916353499</cbc:PaymentID>
+            <cac:PayeeFinancialAccount>
+                <cbc:ID>NO1797500645931</cbc:ID>
+                <cbc:Name>SKANDINAVISKA ENSKILDA BANKEN</cbc:Name>
+                <cac:FinancialInstitutionBranch>
+                    <cbc:ID>ESSENOKXXXX</cbc:ID>
+                </cac:FinancialInstitutionBranch>
+            </cac:PayeeFinancialAccount>
+        </cac:PaymentMeans>
+        <cac:PaymentTerms>
+            <cbc:Note>Frem til 23.01.2023 netto</cbc:Note>
+        </cac:PaymentTerms>
+        <cac:AllowanceCharge>
+            <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+            <cbc:AllowanceChargeReason>Administrasjonsgebyr</cbc:AllowanceChargeReason>
+            <cbc:Amount currencyID="NOK">70.00</cbc:Amount>
+            <cac:TaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>25.000</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:TaxCategory>
+        </cac:AllowanceCharge>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="NOK">6775.06</cbc:TaxAmount>
+            <cac:TaxSubtotal>
+                <cbc:TaxableAmount currencyID="NOK">27100.24</cbc:TaxableAmount>
+                <cbc:TaxAmount currencyID="NOK">6775.06</cbc:TaxAmount>
+                <cac:TaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:TaxCategory>
+            </cac:TaxSubtotal>
+        </cac:TaxTotal>
+        <cac:LegalMonetaryTotal>
+            <cbc:LineExtensionAmount currencyID="NOK">27030.24</cbc:LineExtensionAmount>
+            <cbc:TaxExclusiveAmount currencyID="NOK">27100.24</cbc:TaxExclusiveAmount>
+            <cbc:TaxInclusiveAmount currencyID="NOK">33875.30</cbc:TaxInclusiveAmount>
+            <cbc:ChargeTotalAmount currencyID="NOK">70.00</cbc:ChargeTotalAmount>
+            <cbc:PayableAmount currencyID="NOK">33875.30</cbc:PayableAmount>
+        </cac:LegalMonetaryTotal>
+        <cac:InvoiceLine>
+            <cbc:ID>1</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">0.5</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">845.00</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>REISETID SERVICE</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>STIM2043</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">1690.00</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>2</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">2.5</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">4225.00</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>TIMEPRIS SERVICE</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>STIM2040</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">1690.00</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>3</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">10294.00</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>LADELIKERETTER 24V/10A</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>EL600-2410</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">10294.00</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>4</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">6</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">10140.00</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>TIMEPRIS SERVICE</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>STIM2040</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">1690.00</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>5</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">0.5</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">845.00</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>REISETID SERVICE</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>STIM2043</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">1690.00</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>6</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">473.00</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>SERVICEBIL</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>SKM3031</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">473.00</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>7</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">12</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">63.60</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>TRANSPORT PR.KM.</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>SKM3028</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">5.30</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+        <cac:InvoiceLine>
+            <cbc:ID>8</cbc:ID>
+            <cbc:InvoicedQuantity unitCode="EA">128</cbc:InvoicedQuantity>
+            <cbc:LineExtensionAmount currencyID="NOK">144.64</cbc:LineExtensionAmount>
+            <cac:Item>
+                <cbc:Name>BOMPENGER/PARKERING</cbc:Name>
+                <cac:SellersItemIdentification>
+                    <cbc:ID>SKM3047</cbc:ID>
+                </cac:SellersItemIdentification>
+                <cac:ClassifiedTaxCategory>
+                    <cbc:ID>S</cbc:ID>
+                    <cbc:Percent>25.000</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID>VAT</cbc:ID>
+                    </cac:TaxScheme>
+                </cac:ClassifiedTaxCategory>
+            </cac:Item>
+            <cac:Price>
+                <cbc:PriceAmount currencyID="NOK">1.13</cbc:PriceAmount>
+            </cac:Price>
+        </cac:InvoiceLine>
+    </Invoice>
+</StandardBusinessDocument>

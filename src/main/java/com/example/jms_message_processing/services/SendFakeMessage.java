@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,10 +36,13 @@ public class SendFakeMessage {
         });
     }
 
-    public void createAndSendFakeMessage(String msg, String groupId, Integer groupSeq) {
+    public void createAndSendFakeMessage(String destinationQueue, Object msg, String groupId, Integer groupSeq, boolean isLastInGroup) {
         jmsTemplate.convertAndSend(destinationQueue, msg, message -> {
             message.setStringProperty("JMSXGroupID", groupId);
             message.setIntProperty("JMSXGroupSeq", groupSeq);
+            if (isLastInGroup) {
+                message.setBooleanProperty("JMS_IBM_Last_Msg_In_Group", true);
+            }
             return message;
         });
     }
@@ -65,7 +71,25 @@ public class SendFakeMessage {
         // send messages in random order
         for (FakeMessage fakeMessage : hashSet) {
 //            logger.info("sending message {} of group {}", fakeMessage.getGroupSeq(), fakeMessage.getGroupId());
-            createAndSendFakeMessage(fakeMessage.getMessage(), fakeMessage.getGroupId(), fakeMessage.getGroupSeq());
+            createAndSendFakeMessage("DEV.QUEUE.1", fakeMessage.getMessage(), fakeMessage.getGroupId(), fakeMessage.getGroupSeq(), fakeMessage.getGroupSeq().equals(messageParts));
         }
+    }
+
+    public void sendRealFakeMessages() throws IOException {
+        logger.info("sending real fake messages to DEV.QUEUE.2");
+
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.headers")), "msg_01", 1, false);
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.xml")), "msg_01", 2, false);
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.zero")), "msg_01", 3, true);
+
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.headers")), "msg_02", 1, false);
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.xml")), "msg_02", 2, false);
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.zero")), "msg_02", 3, true);
+
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.headers")), "msg_03", 1, false);
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.xml")), "msg_03", 2, false);
+        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.zero")), "msg_03", 3, true);
+
+        logger.info("sent real fake messages to DEV.QUEUE.2");
     }
 }

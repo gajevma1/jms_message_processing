@@ -24,8 +24,9 @@ public class JmsMessageProcessingApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        logger.info("gajevma1, attempting ot send some messages...");
+//        logger.info("gajevma1, attempting ot send some messages...");
 //        sendFakeMessage.sendFakeBinaryMessage();
-        sendFakeMessage.sendFakeMessageGroup(4,3);
+//        sendFakeMessage.sendFakeMessageGroup(4,3);
+//        sendFakeMessage.sendRealFakeMessages();
     }
 }
