@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<StandardBusinessDocument>
+    <StandardBusinessDocumentHeader>
+        <Sender>
+            <Identifier>0192:983445349</Identifier>
+        </Sender>
+        <Receiver>
+            <Identifier>9906:IT10442360961</Identifier>
+        </Receiver>
+        <BusinessScope>
+            <Scope>
+                <Type>DOCUMENTID</Type>
+                <InstanceIdentifier>
+                    urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu

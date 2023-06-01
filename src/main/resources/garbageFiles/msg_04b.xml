@@ -1,0 +1,13 @@
+:2017:poacc:billing:3.0::2.1
+                </InstanceIdentifier>
+            </Scope>
+            <Scope>
+                <Type>PROCESSID</Type>
+                <InstanceIdentifier>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</InstanceIdentifier>
+            </Scope>
+        </BusinessScope>
+    </StandardBusinessDocumentHeader>
+    <Invoice>
+        <foobar> ^_^ </foobar>
+    </Invoice>
+</StandardBusinessDocument>
