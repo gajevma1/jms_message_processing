@@ -13,5 +13,6 @@ public class CustomErrorHandler implements ErrorHandler {
     @Override
     public void handleError(Throwable t) {
         logger.error("some shit went down! \uD83D\uDE43");
+        logger.info("got this error: {}", t.getMessage());
     }
 }

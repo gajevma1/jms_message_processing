@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SendFakeMessage {
@@ -20,15 +21,19 @@ public class SendFakeMessage {
 
     private final JmsTemplate jmsTemplate;
 
-    @Value("${ibm.mq.queueName}")
-    private String destinationQueue;
+    @Value("${ibm.mq.queues[0]}")
+    private String destinationQueueOne;
+    @Value("${ibm.mq.queues[1]}")
+    private String destinationQueueTwo;
+    @Value("${ibm.mq.queues[2]}")
+    private String destinationQueueThree;
 
     public SendFakeMessage(JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
 
     public void sendFakeBinaryMessage() {
-        jmsTemplate.convertAndSend(destinationQueue, new Byte[0], message -> {
+        jmsTemplate.convertAndSend(destinationQueueOne, new Byte[0], message -> {
             message.setBooleanProperty("zero_bytes_message", true);
             message.setJMSMessageID("some_unique_id");
             message.setJMSCorrelationID("1234");
@@ -76,24 +81,25 @@ public class SendFakeMessage {
     }
 
     public void sendRealFakeMessages() throws IOException {
-        logger.info("sending real fake messages to DEV.QUEUE.2");
+        logger.info("sending real fake messages to {}", destinationQueueOne);
+        String rnd = UUID.randomUUID().toString();
 
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.headers")), "msg_01", 1, false);
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.xml")), "msg_01", 2, false);
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.zero")), "msg_01", 3, true);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.headers")), "msg_01", 1, false);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.xml")), "msg_01", 2, false);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_01.zero")), "msg_01", 3, true);
 
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.headers")), "msg_02", 1, false);
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.xml")), "msg_02", 2, false);
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.zero")), "msg_02", 3, true);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.headers")), "msg_02", 1, false);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.xml")), "msg_02", 2, false);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_02.zero")), "msg_02", 3, true);
 
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.headers")), "msg_03", 1, false);
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.xml")), "msg_03", 2, false);
-//        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.zero")), "msg_03", 3, true);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.headers")), "msg_03", 1, false);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.xml")), "msg_03", 2, false);
+//        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_03.zero")), "msg_03", 3, true);
 
-        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04.headers")), "msg_04", 1, false);
-        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04a.xml")), "msg_04", 2, false);
-        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04b.xml")), "msg_04", 3, false);
-        createAndSendFakeMessage("DEV.QUEUE.2", Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04.zero")), "msg_04", 4, true);
+        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04.headers")), "msg_04_" + rnd, 1, false);
+        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04a.xml")), "msg_04_" + rnd, 2, false);
+        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04b.xml")), "msg_04_" + rnd, 3, false);
+        createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04.zero")), "msg_04_" + rnd, 4, true);
 
         logger.info("sent real fake messages to DEV.QUEUE.2");
     }

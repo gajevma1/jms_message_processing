@@ -14,3 +14,9 @@
     docker exec -it QM1 bash
     runmqsc QM1 < tmp/configure_backout_queue.mqsc
    ##### 5. Access the MQ Web Console from here - https://localhost:9443/ibmmq/console
+
+### Clearing all queues
+   #### Add the mqcs file to the image
+    docker cp src/main/resources/clear_all_queues.mqsc QM1:/tmp/clear_all_queues.mqsc
+    docker exec -it QM1 bash
+    runmqsc QM1 < tmp/clear_all_queues.mqsc
