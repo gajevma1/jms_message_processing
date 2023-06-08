@@ -1,19 +1,20 @@
 package com.example.jms_message_processing.services;
 
 import com.example.jms_message_processing.model.FakeMessage;
+import com.example.jms_message_processing.retry.CustomRetryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class SendFakeMessage {
@@ -102,5 +103,25 @@ public class SendFakeMessage {
         createAndSendFakeMessage(destinationQueueOne, Files.readAllBytes(Paths.get("src/main/resources/garbageFiles/msg_04.zero")), "msg_04_" + rnd, 4, true);
 
         logger.info("sent real fake messages to DEV.QUEUE.2");
+    }
+
+ /*   @Retryable(
+            maxAttempts = 3,
+            backoff = @Backoff(3000))*/
+    @Retryable(backoff = @Backoff(multiplier = 6, delay = 1000L, maxDelay = 1000 * 3), maxAttempts = 5)
+    public String retryExample() {
+        int random = new Random().nextInt(4);
+        if (true) {
+            logger.info("-+----> sorry, you've got number {}", random);
+            throw new CustomRetryException("some fake exception");
+        }
+        logger.info("-+----> sorry, your lucky number is {}", random);
+        return "hello \uD83D\uDE43";
+    }
+
+    @Recover
+    public String recover(Throwable throwable) {
+        logger.info("Default Retry servive test");
+        return "Error Class :: " + throwable.getClass().getName();
     }
 }

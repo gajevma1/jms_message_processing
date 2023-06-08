@@ -12,3 +12,9 @@ ibm:
       - DEV.QUEUE.3
 #    backout-threshold: 1
 #    backout-requeue-queue: MY.DEAD.LETTER.QUEUE
+
+retry:
+  delay: 2000
+  multiplier: 2
+  maxDelay: 5000
+  maxAttempts: 3

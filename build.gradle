@@ -17,6 +17,11 @@ dependencies {
 
     // spring
     implementation 'org.springframework.boot:spring-boot-starter'
+    // https://mvnrepository.com/artifact/org.springframework.retry/spring-retry
+    implementation 'org.springframework.retry:spring-retry:1.3.4'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop:2.7.5'
+
 
     // messaging
     implementation 'com.ibm.mq:mq-jms-spring-boot-starter:2.7.5'
